@@ -1,9 +1,5 @@
 package com.mree.app.core;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mree.app.core.common.model.UserInfo;
-import com.mree.app.core.common.ref.UserStatus;
 import com.mree.app.core.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,20 +22,6 @@ public class SpringDemoApplication extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
-
-        UserInfo i = new UserInfo();
-        i.setName("System");
-        i.setSurname("User");
-        i.setPassword("system");
-        i.setUsername("system");
-        i.setStatus(UserStatus.ACTIVE);
-
-        try {
-            System.out.println(new ObjectMapper().writeValueAsString(i));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
         SpringApplication.run(SpringDemoApplication.class, args);
     }
 

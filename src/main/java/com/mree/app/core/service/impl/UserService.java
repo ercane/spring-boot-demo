@@ -59,7 +59,7 @@ public class UserService extends BaseService<User, UserInfo> implements IUserSer
             i.setPassword("system");
             i.setUsername("system");
             i.setStatus(UserStatus.ACTIVE);
-            create(i);
+            signup(i);
         }
     }
 
