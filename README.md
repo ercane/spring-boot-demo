@@ -10,3 +10,7 @@ To build and run the sample from a fresh clone of this repo:
 
 1. Create a database in your MySQL instance.
 2. Update the application.properties file in the `src/main/resources` folder with the URL, username and password for your MySQL instance. The table schema for the app objects will be created for you in the database.
+3. Create user with /user/signup endpoint.
+4. Login user with /user/login endpoint.
+5. Other endpoints need header Authorization: Bearer {{TOKEN}}
+
