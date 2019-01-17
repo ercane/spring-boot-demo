@@ -14,7 +14,9 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-/** * @author MREE * * */
+/**
+ * @author MREE * *
+ */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -57,9 +59,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/configuration/**")//
                 .antMatchers("/webjars/**")//
                 .antMatchers("/public")
-
                 // Un-secure H2 Database (for testing purposes, H2 console shouldn't be unprotected in production)
-                .and().ignoring().antMatchers("/h2-console/**/**");
+                .and().ignoring()
+                .antMatchers("/h2-console/**/**");
+
         ;
     }
 
