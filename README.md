@@ -1,4 +1,4 @@
-# Sample web application using Spring Boot and MySQL
+# Sample web application with user sign up and login using Spring Boot and MySQL
 
 A simple CRUD operation for user and auth mechanism application using Spring Boot with the following options:
 
