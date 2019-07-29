@@ -69,7 +69,7 @@ public class UserService extends BaseService<User, UserInfo> implements IUserSer
         if (info.getId() == null) {
             entity = new User();
         } else {
-            entity = getRepo().findOne(info.getId());
+            entity = getRepo().findById(info.getId()).get();
         }
 
         return entity;
@@ -98,7 +98,7 @@ public class UserService extends BaseService<User, UserInfo> implements IUserSer
             throw new AppServiceException("User cannot be found. Because there is no id ");
         }
 
-        User entity = getRepo().findOne(info.getId());
+        User entity = getRepo().findById(info.getId()).get();
 
         if (entity == null) {
             throw new AppServiceException("There is no a user with id " + info.getId());
@@ -115,7 +115,7 @@ public class UserService extends BaseService<User, UserInfo> implements IUserSer
             throw new AppServiceException("User cannot be found. Because there is no id ");
         }
 
-        User entity = getRepo().findOne(id);
+        User entity = getRepo().findById(id).get();
 
         if (entity == null) {
             throw new AppServiceException("There is no user with id " + id);

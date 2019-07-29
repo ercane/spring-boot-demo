@@ -28,7 +28,7 @@ public abstract class BaseService<E extends BaseEntity<I>, I extends BaseInfo> i
 
     @Override
     public I getById(Long id) throws AppServiceException {
-        E entity = getRepo().findOne(id);
+        E entity = getRepo().findById(id).get();
         return entity.toInfo();
     }
 
@@ -58,7 +58,7 @@ public abstract class BaseService<E extends BaseEntity<I>, I extends BaseInfo> i
     public void delete(Long id) throws AppServiceException {
         try {
             prepareForDelete(id);
-            getRepo().delete(id);
+            getRepo().deleteById(id);
         } catch (Exception e) {
             throw new AppServiceException(e);
         }
