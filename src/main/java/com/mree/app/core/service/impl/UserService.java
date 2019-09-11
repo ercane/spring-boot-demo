@@ -22,6 +22,7 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author MREE * *
@@ -59,6 +60,7 @@ public class UserService extends BaseService<User, UserInfo> implements IUserSer
             i.setPassword("system");
             i.setUsername("system");
             i.setStatus(UserStatus.ACTIVE);
+            i.setRole(Role.ROLE_ADMIN);
             signup(i);
         }
     }
@@ -138,6 +140,10 @@ public class UserService extends BaseService<User, UserInfo> implements IUserSer
         if (!StringUtils.hasLength(info.getPassword())) {
             throw new AppServiceException("Password is required!");
         }
+
+        if(!Objects.nonNull(info.getRole())){
+            throw new AppServiceException("Role is required!");
+        }
     }
 
     @Override
@@ -149,7 +155,7 @@ public class UserService extends BaseService<User, UserInfo> implements IUserSer
     public String signup(UserInfo info) throws AppServiceException {
         info.setPassword(passwordEncoder.encode(info.getPassword()));
         UserInfo create = create(info);
-        return jwtTokenProvider.createToken(create.getUsername(), Arrays.asList(Role.ROLE_CLIENT));
+        return jwtTokenProvider.createToken(create.getUsername(), Arrays.asList(Role.ROLE_USER));
     }
 
     @Override
@@ -157,7 +163,7 @@ public class UserService extends BaseService<User, UserInfo> implements IUserSer
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(info.getUsername(), info.getPassword()));
-            return jwtTokenProvider.createToken(info.getUsername(), Arrays.asList(Role.ROLE_CLIENT));
+            return jwtTokenProvider.createToken(info.getUsername(), Arrays.asList(Role.ROLE_USER));
         } catch (AuthenticationException e) {
             throw new CustomException("Invalid username/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
         }

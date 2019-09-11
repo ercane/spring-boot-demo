@@ -1,5 +1,6 @@
 package com.mree.app.core.common.model;
 
+import com.mree.app.core.common.ref.Role;
 import com.mree.app.core.common.ref.UserStatus;
 import lombok.Data;
 
@@ -13,5 +14,6 @@ public class UserInfo extends BaseInfo {
     private String name;
     private String surname;
     private UserStatus status;
+    private Role role;
 
 }

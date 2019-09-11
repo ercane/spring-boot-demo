@@ -1,10 +1,13 @@
 package com.mree.app.core.persist;
 
 import com.mree.app.core.common.model.UserInfo;
+import com.mree.app.core.common.ref.Role;
 import com.mree.app.core.common.ref.UserStatus;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 /**
  * @author MREE * *
@@ -16,15 +19,15 @@ public class User extends BaseEntity<UserInfo> {
     private String password;
     private String name;
     private String surname;
-    private Integer status;
 
-    public UserStatus getStatus() {
-        return UserStatus.get(status);
-    }
+    @Enumerated(value = EnumType.STRING)
+    private UserStatus status;
 
-    public void setStatus(UserStatus status) {
-        this.status = status.getCode();
-    }
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
+
+
+
 
     @Override
     public UserInfo toInfo() {
@@ -36,6 +39,7 @@ public class User extends BaseEntity<UserInfo> {
         i.setUpdatedDate(getUpdatedDate());
         i.setUsername(username);
         i.setStatus(getStatus());
+        i.setRole(getRole());
         return i;
     }
 
@@ -46,6 +50,7 @@ public class User extends BaseEntity<UserInfo> {
         setUsername(info.getUsername());
         setPassword(info.getPassword());
         setStatus(info.getStatus());
+        setRole(info.getRole());
     }
 
 }
